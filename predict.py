@@ -6,13 +6,14 @@ from model import SimpleCNN
 
 #CLASSES 
 classes = [
-    "altocumulus",
-    "cirrus",
-    "cumulonimbus",
-    "cumulus",
-    "nimbostratus",
-    "stratocumulus",
-    "stratus"
+    "cirriform clouds",
+    "clear sky",
+    "cumulonimbus clouds",
+    "cumulus clouds",
+    "high cumuliform clouds",
+    "not_sky",
+    "stratiform clouds",
+    "stratocumulus clouds"
 ]
 
 #  LOAD MODEL 

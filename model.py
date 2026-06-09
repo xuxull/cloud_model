@@ -20,7 +20,7 @@ class SimpleCNN(nn.Module):
         self.classifier = nn.Sequential(
             nn.Linear(32 * 56 * 56, 128),
             nn.ReLU(),
-            nn.Linear(128, 7)
+            nn.Linear(128, 8)
 
         )
     

@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 
 from model import SimpleCNN
 
-#дата
+
 train_transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.RandomHorizontalFlip(),
@@ -18,6 +18,7 @@ val_transform = transforms.Compose([
     transforms.ToTensor()
 ])
 
+
 train_data = datasets.ImageFolder("data/train", transform=train_transform)
 val_data = datasets.ImageFolder("data/val", transform=val_transform)
 
@@ -26,18 +27,20 @@ val_loader = DataLoader(val_data, batch_size=16, shuffle=False)
 
 print("Classes:", train_data.classes)
 
-#девайс
+
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-#модель
+
 model = SimpleCNN().to(device)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-epochs = 20
+epochs = 10
 
-#треня
+
+# ================= TRAIN =================
 for epoch in range(epochs):
     model.train()
     total_loss = 0
@@ -57,7 +60,7 @@ for epoch in range(epochs):
 
     print(f"Epoch {epoch+1}, Loss: {total_loss/len(train_loader):.4f}")
 
-    #вал
+    # ================= VALIDATION =================
     model.eval()
 
     correct = 0
@@ -77,6 +80,7 @@ for epoch in range(epochs):
     accuracy = 100 * correct / total
     print(f"Validation Accuracy: {accuracy:.2f}%")
 
-#храни тебя господь
+
+# ================= SAVE =================
 torch.save(model.state_dict(), "sky_model.pth")
 print("Model saved!")
